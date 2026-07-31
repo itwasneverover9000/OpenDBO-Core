@@ -2,14 +2,14 @@
  *
  * File			: InputAction.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input action 
  *****************************************************************************
  * Desc         : 
  *
  * 1st Refactoring(2008. 1. 15 ~ 1. 20 ) : 
- * ¿⁄∑·±∏¡∂øÕ ∏≈¥œ¿˙∏¶ øœ¿¸ ∫–∏Æ( InputActionMap <-> ActionMap )
+ * ÏûêÎ£åÍµ¨Ï°∞ÏôÄ Îß§ÎãàÏ†ÄÎ•º ÏôÑÏ†Ñ Î∂ÑÎ¶¨( InputActionMap <-> ActionMap )
  *
  *****************************************************************************/
 
@@ -55,27 +55,27 @@ public:
 	void Reset(void);
 	void ResetMoveFlags(void);
 
-	int KeyDownHandler(unsigned int pKeyData);
-	int KeyUpHandler(unsigned int pKeyData);
+	int KeyDownHandler(uintptr_t pKeyData);
+	int KeyUpHandler(uintptr_t pKeyData);
 
-	int MouseDownHandler(unsigned int pMouseData);
-	int MouseUpHandler(unsigned int pMouseData);
+	int MouseDownHandler(uintptr_t pMouseData);
+	int MouseUpHandler(uintptr_t pMouseData);
 
 	void SetActive(RwBool bActive);
 
 public:
-	// CActionMap ¿Œ≈Õ∆‰¿ÃΩ∫
-	void			InitInputMode();					///< ¿‘∑¬ ∏µÂ «ÿ¡¶
-	RwUInt32		GetInputMode();						///< æÓ∂≤ ACTION¿Ã INPUTMODE¿Œ¡ˆ
-	void			SetInputMode( RwUInt32 nAction );	///< nActionø° ¿‘∑¬ ∏µÂ ¡ˆ¡§
+	// CActionMap Ïù∏ÌÑ∞ÌéòÏù¥Ïä§
+	void			InitInputMode();					///< ÏûÖÎ†• Î™®Îìú Ìï¥Ï†ú
+	RwUInt32		GetInputMode();						///< Ïñ¥Îñ§ ACTIONÏù¥ INPUTMODEÏù∏ÏßÄ
+	void			SetInputMode( RwUInt32 nAction );	///< nActionÏóê ÏûÖÎ†• Î™®Îìú ÏßÄÏ†ï
 
-	std::wstring	GetKeyName( RwUInt32 nAction );		///< æ◊º«¿Ã ∞°¡ˆ∞Ì ¿÷¥¬ ≈∞¿« ¿Ã∏ß
+	std::wstring	GetKeyName( RwUInt32 nAction );		///< Ïï°ÏÖòÏù¥ Í∞ÄÏßÄÍ≥† ÏûàÎäî ÌÇ§Ïùò Ïù¥Î¶Ñ
 	unsigned short	FindKey( RwUInt32 nAction );
 
-	void			InitDefaultActionMap();				///< µ∆˙∆Æ æ◊º«∏ ¿∏∑Œ º¬∆√
+	void			InitDefaultActionMap();				///< ÎîîÌè¥Ìä∏ Ïï°ÏÖòÎßµÏúºÎ°ú ÏÖãÌåÖ
 
-	RwBool			ApplyActionMap();					///< æ◊º«∏ ¿« ¿˚øÎ(º≠πˆ∑Œ ∆–≈∂ ¿¸º€)
-	void			CancleActionMap();					///< ¿˚øÎ √Îº“
+	RwBool			ApplyActionMap();					///< Ïï°ÏÖòÎßµÏùò Ï†ÅÏö©(ÏÑúÎ≤ÑÎ°ú Ìå®ÌÇ∑ Ï†ÑÏÜ°)
+	void			CancleActionMap();					///< Ï†ÅÏö© Ï∑®ÏÜå
 
 	// Ignore Key
 	RwBool			RegisterIgnoreKey( RwUInt8 byKey, int nRefCount );
@@ -94,11 +94,11 @@ protected:
 	void HitTestUpDbClickDashMap(SInputDashMap& sDashMap);
 	void CallDashMove(RwUInt32 uiServerDashMoveFlags);
 
-	// æ◊º«ID∏¶ ≥—∞‹ √≥∏Æ«œ∞‘ ∫Ø∞Êµ» «‘ºˆµÈ
-	void ActionDownMoveHandler(RwUInt32 uiAction);		///< æ◊º«ø° ¿««— ¿Ãµø æ◊º« «⁄µÈ∑Ø
-	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< æ◊º«ø° ¿««— ¥ÎΩ¨ æ◊º« «⁄µÈ∑Ø
-	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< æ◊º«ø° ¿««— «‡µø æ◊º« «⁄µÈ∑Ø
-	void ActionDownGuiHandler(RwUInt32 uiAction);		///< æ◊º«ø° ¿««— GUI æ◊º« «⁄µÈ∑Ø
+	// Ïï°ÏÖòIDÎ•º ÎÑòÍ≤® Ï≤òÎ¶¨ÌïòÍ≤å Î≥ÄÍ≤ΩÎêú Ìï®ÏàòÎì§
+	void ActionDownMoveHandler(RwUInt32 uiAction);		///< Ïï°ÏÖòÏóê ÏùòÌïú Ïù¥Îèô Ïï°ÏÖò Ìï∏Îì§Îü¨
+	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< Ïï°ÏÖòÏóê ÏùòÌïú ÎåÄÏâ¨ Ïï°ÏÖò Ìï∏Îì§Îü¨
+	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< Ïï°ÏÖòÏóê ÏùòÌïú ÌñâÎèô Ïï°ÏÖò Ìï∏Îì§Îü¨
+	void ActionDownGuiHandler(RwUInt32 uiAction);		///< Ïï°ÏÖòÏóê ÏùòÌïú GUI Ïï°ÏÖò Ìï∏Îì§Îü¨
 
 	void ActionUpMoveHandler(RwUInt32 uiAction);			
 	void ActionUpDashMoveHandler(RwUInt32 uiAction);		
@@ -119,54 +119,54 @@ private:
 	INPUT_HANDLE m_hMouseDown;
 	INPUT_HANDLE m_hMouseUp;
 
-	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< ≈∞∫∏µÂ ¿Ãµø
-	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< ≈∞∫∏µÂ ¥ÎΩ¨ ¿Ãµø
-	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< æ∆πŸ≈∏ º±≈√
-	CNtlCallbackParam1 *m_pCallJump;				///< ¡°«¡
-	CNtlCallbackParam1 *m_pCallCharging;			///< ±‚ ∏¿∏±‚
-	CNtlCallbackParam1 *m_pCallBlocking;			///< ∫Ì∑œ ∏µÂ
-	CNtlCallbackParam1 *m_pCallSitAndStand;			///< æ…æ∆ ¿œæÓº≠
-	CNtlCallbackParam0 *m_pCallAutoRun;				///< ¿⁄µø ¥ﬁ∏Æ±‚
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< ƒ¸ΩΩ∑‘ ¥ŸøÓ
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< ƒ¸ΩΩ∑‘ æ˜
+	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< ÌÇ§Î≥¥Îìú Ïù¥Îèô
+	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< ÌÇ§Î≥¥Îìú ÎåÄÏâ¨ Ïù¥Îèô
+	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< ÏïÑÎ∞îÌÉÄ ÏÑ†ÌÉù
+	CNtlCallbackParam1 *m_pCallJump;				///< Ï†êÌîÑ
+	CNtlCallbackParam1 *m_pCallCharging;			///< Í∏∞ Î™®ÏúºÍ∏∞
+	CNtlCallbackParam1 *m_pCallBlocking;			///< Î∏îÎ°ù Î™®Îìú
+	CNtlCallbackParam1 *m_pCallSitAndStand;			///< ÏïâÏïÑ ÏùºÏñ¥ÏÑú
+	CNtlCallbackParam0 *m_pCallAutoRun;				///< ÏûêÎèô Îã¨Î¶¨Í∏∞
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< ÌÄµÏä¨Î°Ø Îã§Ïö¥
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< ÌÄµÏä¨Î°Ø ÏóÖ
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExDown;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExUp;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Down;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Up;
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< ƒ¸ΩΩ∑‘ PREV, NEXT
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< ÌÄµÏä¨Î°Ø PREV, NEXT
 	CNtlCallbackParam0 *m_pCallExit;				///< Exit
-	CNtlCallbackParam0 *m_pCallLooting;				///< æ∆¿Ã≈€ ¡›±‚
-	CNtlCallbackParam1 *m_pCallDialogAction;		///< Dialogø° ∫∏≥æ æ◊º«
-	CNtlCallbackParam0 *m_pCallTabKey;				///< ≈«¿« æ◊º«
-	CNtlCallbackParam0 *m_pCallAutoTarget;			///< ∞°±ÓøÓ ¿˚ º±≈√
-	CNtlCallbackParam0 *m_pCallAutoAttack;			///< ¿⁄µø ∞¯∞›
-	CNtlCallbackParam0 *m_pCallAutoFollow;			///< ¿⁄µø µ˚∂Û∞°±‚
-	CNtlCallbackParam1 *m_pCallPartySelect;			///< ∆ƒ∆ºø¯ º±≈√
-	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< ∆ƒ∆ºø¯ ¿⁄µø º±≈√
-    CNtlCallbackParam0 *m_pCallScouterUse;          ///< Ω∫ƒ´øÏ≈Õ ªÁøÎ (by agebreak)
-	CNtlCallbackParam1 *m_pCallTargetMarking;		///< ≈∏∞Ÿ ∏∂≈∑
-	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< ≈∏∞Ÿ ºø∑∫∆√
-	CNtlCallbackParam1 *m_pCallChatPageChange;			///< √§∆√ ∆‰¿Ã¡ˆ (0 UP 1 DOWN)
+	CNtlCallbackParam0 *m_pCallLooting;				///< ÏïÑÏù¥ÌÖú Ï§çÍ∏∞
+	CNtlCallbackParam1 *m_pCallDialogAction;		///< DialogÏóê Î≥¥ÎÇº Ïï°ÏÖò
+	CNtlCallbackParam0 *m_pCallTabKey;				///< ÌÉ≠Ïùò Ïï°ÏÖò
+	CNtlCallbackParam0 *m_pCallAutoTarget;			///< Í∞ÄÍπåÏö¥ Ï†Å ÏÑ†ÌÉù
+	CNtlCallbackParam0 *m_pCallAutoAttack;			///< ÏûêÎèô Í≥µÍ≤©
+	CNtlCallbackParam0 *m_pCallAutoFollow;			///< ÏûêÎèô Îî∞ÎùºÍ∞ÄÍ∏∞
+	CNtlCallbackParam1 *m_pCallPartySelect;			///< ÌååÌã∞Ïõê ÏÑ†ÌÉù
+	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< ÌååÌã∞Ïõê ÏûêÎèô ÏÑ†ÌÉù
+    CNtlCallbackParam0 *m_pCallScouterUse;          ///< Ïä§Ïπ¥Ïö∞ÌÑ∞ ÏÇ¨Ïö© (by agebreak)
+	CNtlCallbackParam1 *m_pCallTargetMarking;		///< ÌÉÄÍ≤ü ÎßàÌÇπ
+	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< ÌÉÄÍ≤ü ÏÖÄÎ†âÌåÖ
+	CNtlCallbackParam1 *m_pCallChatPageChange;			///< Ï±ÑÌåÖ ÌéòÏù¥ÏßÄ (0 UP 1 DOWN)
 	
 
 	RwUInt32	m_uiKey1MoveValidFlags;
 	RwUInt32	m_uiKey2MoveValidFlags;
-	RwUInt32	m_uiMoveFlags;						///< ≈¨∂Û¿Ãæ∆Æø°º≠ ªÁøÎµ«¥¬ Move Flags
+	RwUInt32	m_uiMoveFlags;						///< ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ÏóêÏÑú ÏÇ¨Ïö©ÎêòÎäî Move Flags
 	RwBool		m_bRBtnDown;
-	RwUInt32	m_uiServerMoveFlags;				///< º≠πˆø° ∫∏≥ª¥¬ Move Flags
-	RwBool		m_bActive;							///< InputActionMap¿Ã ¿€µø¡ﬂ¿Œ¡ˆ¿« ø©∫Œ
-	RwBool		m_bAcceptServer;					///< º≠πˆø° ¿˚øÎ¿Ã ∞°¥…«— ªÛ≈¬
+	RwUInt32	m_uiServerMoveFlags;				///< ÏÑúÎ≤ÑÏóê Î≥¥ÎÇ¥Îäî Move Flags
+	RwBool		m_bActive;							///< InputActionMapÏù¥ ÏûëÎèôÏ§ëÏù∏ÏßÄÏùò Ïó¨Î∂Ä
+	RwBool		m_bAcceptServer;					///< ÏÑúÎ≤ÑÏóê Ï†ÅÏö©Ïù¥ Í∞ÄÎä•Ìïú ÏÉÅÌÉú
 
-	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< ªÛ≈¬∏¶ »∏∫πΩ√ƒ—¡‡æﬂ «“ æ◊º«µÈ
+	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< ÏÉÅÌÉúÎ•º ÌöåÎ≥µÏãúÏºúÏ§òÏïº Ìï† Ïï°ÏÖòÎì§
 	FLAGMAP m_mapFlag;
 
-	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< π´Ω√µ«¥¬ ≈∞∏¶ ∏æ∆≥ı¿∫ ∏ 
+	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< Î¨¥ÏãúÎêòÎäî ÌÇ§Î•º Î™®ÏïÑÎÜìÏùÄ Îßµ
 	IGNOREMAP m_mapIgnore;
 
-	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< ∆Ø¡§«— µø¿€¿ª «ÿæﬂ«œ¥¬ æ◊º«
+	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< ÌäπÏ†ïÌïú ÎèôÏûëÏùÑ Ìï¥ÏïºÌïòÎäî Ïï°ÏÖò
 	SPECMAP	m_mapSpecialAction;
 
-	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< ≈∞∞° æ˜/¥ŸøÓ µ«¥¬ »Ωºˆ∏¶ √º≈©«—¥Ÿ.
+	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< ÌÇ§Í∞Ä ÏóÖ/Îã§Ïö¥ ÎêòÎäî ÌöüÏàòÎ•º Ï≤¥ÌÅ¨ÌïúÎã§.
 	UPDOWNREF m_mapUpdownRef;
 
 	SInputDashMap m_sFrontDashMap;
@@ -174,17 +174,17 @@ private:
 	SInputDashMap m_sRightDashMap;
 	SInputDashMap m_sBackDashMap;
 
-	// æ◊º«∏  ≈¨∑°Ω∫(ActionMap.h) by Kell
+	// Ïï°ÏÖòÎßµ ÌÅ¥ÎûòÏä§(ActionMap.h) by Kell
 	CActionMapManager m_ActionMapManager;
 
 public:
 
 	template <class Callbackclass>	
-	void LinkKeyboardMove(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMoveFalgs));
+	void LinkKeyboardMove(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs));
 	void UnLinkKeyboardMove(void);
 
 	template <class Callbackclass>
-	void LinkKeyboardDashMove(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMoveFalgs));
+	void LinkKeyboardDashMove(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs));
 	void UnLinkKeyboardDashMove(void);
 
 	template <class Callbackclass>
@@ -192,19 +192,19 @@ public:
 	void UnLinkAvatarSelect(void);
 
 	template <class Callbackclass>
-	void LinkJump(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMoveFalgs));
+	void LinkJump(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs));
 	void UnLinkJump(void);
 
 	template <class Callbackclass>
-	void LinkCharging(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiCharging));
+	void LinkCharging(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiCharging));
 	void UnLinkCharging(void);
 
 	template <class Callbackclass>
-	void LinkBlocking(Callbackclass *cbclass, int (Callbackclass::*callback)(unsigned int uiBlocking));
+	void LinkBlocking(Callbackclass *cbclass, int (Callbackclass::*callback)(uintptr_t uiBlocking));
 	void UnLinkBlocking(void);
 
 	template <class Callbackclass>
-	void LinkSitAndStand(Callbackclass *cbclass, int (Callbackclass::*callback)(unsigned int bKeyDown));
+	void LinkSitAndStand(Callbackclass *cbclass, int (Callbackclass::*callback)(uintptr_t bKeyDown));
 	void UnLinkSitAndStand(void);
 
 	template <class Callbackclass>
@@ -212,31 +212,31 @@ public:
 	void UnLinkAutoRun(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotDown(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotDown(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotUp(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotUp(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotExDown(Callbackclass *cbclass, int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotExDown(Callbackclass *cbclass, int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotExDown(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotExUp(Callbackclass *cbclass, int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotExUp(Callbackclass *cbclass, int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotExUp(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotEx2Down(Callbackclass* cbclass, int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotEx2Down(Callbackclass* cbclass, int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotEx2Down(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotEx2Up(Callbackclass* cbclass, int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx));
+	void LinkSkillQuickSlotEx2Up(Callbackclass* cbclass, int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx));
 	void UnLinkSkillQuickSlotEx2Up(void);
 
 	template <class Callbackclass>
-	void LinkSkillQuickSlotChange(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotChange));
+	void LinkSkillQuickSlotChange(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotChange));
 	void UnLinkSkillQuickSlotChange(void);
 
 	template <class Callbackclass>
@@ -248,7 +248,7 @@ public:
 	void UnLinkLooting(void);
 
 	template <class Callbackclass>
-	void LinkDialogHotKey(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiKey));
+	void LinkDialogHotKey(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiKey));
 	void UnLinkDialogHotKey(void);
 
 	template <class Callbackclass>
@@ -268,7 +268,7 @@ public:
 	void UnLinkAutoFollow(void);
 
 	template <class Callbackclass>
-	void LinkPartySelect(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx));
+	void LinkPartySelect(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx));
 	void UnLinkPartySelect(void);
 
 	template <class Callbackclass>
@@ -280,19 +280,19 @@ public:
     void UnLinkScouterUse(void);
 
 	template <class Callbackclass>
-	void LinkActionMapUpdate(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiAction, unsigned int iChange));
+	void LinkActionMapUpdate(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiAction, uintptr_t iChange));
 	void UnLinkActionMapUpdate(void);
 
 	template <class Callbackclass>
-	void LinkTargetMarking(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx));
+	void LinkTargetMarking(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx));
 	void UnLinkTargetMarking(void);
 
 	template <class Callbackclass>
-	void LinkTargetSelecting(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx));
+	void LinkTargetSelecting(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx));
 	void UnLinkTargetSelecting(void);
 
 	template <class Callbackclass>
-	void LinkChatPageChange(Callbackclass *cbclass,int ( Callbackclass::*callback)(unsigned int uiOption));
+	void LinkChatPageChange(Callbackclass *cbclass,int ( Callbackclass::*callback)(uintptr_t uiOption));
 	void UnLinkChatPageChane(void);
 };
 
@@ -303,14 +303,14 @@ static CInputActionMap* GetInputActionMap(void)
 
 
 template <class Callbackclass>	
-void CInputActionMap::LinkKeyboardMove(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int))
+void CInputActionMap::LinkKeyboardMove(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t))
 {
 	NTL_PRE(m_pCallKeyboardMove == 0);
 	m_pCallKeyboardMove = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkKeyboardDashMove(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMoveFalgs))
+void CInputActionMap::LinkKeyboardDashMove(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs))
 {
 	NTL_PRE(m_pCallKeyboardDashMove == 0);
 	m_pCallKeyboardDashMove = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
@@ -325,28 +325,28 @@ void CInputActionMap::LinkAvatarSelect(Callbackclass *cbclass,int (Callbackclass
 
 
 template <class Callbackclass>
-void CInputActionMap::LinkJump(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMoveFalgs))
+void CInputActionMap::LinkJump(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs))
 {
 	NTL_PRE(m_pCallJump == 0);
 	m_pCallJump = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkCharging(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiCharging))
+void CInputActionMap::LinkCharging(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiCharging))
 {
 	NTL_PRE(m_pCallCharging == 0);
 	m_pCallCharging = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkBlocking(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiBlocking))
+void CInputActionMap::LinkBlocking(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiBlocking))
 {
 	NTL_PRE(m_pCallBlocking == 0);
 	m_pCallBlocking = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSitAndStand(Callbackclass *cbclass, int (Callbackclass::*callback)(unsigned int bKeyDown))
+void CInputActionMap::LinkSitAndStand(Callbackclass *cbclass, int (Callbackclass::*callback)(uintptr_t bKeyDown))
 {
 	NTL_PRE(m_pCallSitAndStand == 0);
 	m_pCallSitAndStand = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
@@ -360,49 +360,49 @@ void CInputActionMap::LinkAutoRun(Callbackclass *cbclass,int (Callbackclass::*ca
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotDown(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotDown == 0);
 	m_pCallSkillQuickSlotDown = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotUp(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotUp == 0);
 	m_pCallSkillQuickSlotUp = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotExDown(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotExDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotExDown == 0);
 	m_pCallSkillQuickSlotExDown = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotExUp(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotExUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotExUp == 0);
 	m_pCallSkillQuickSlotExUp = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotEx2Down(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotEx2Down(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotEx2Down == 0);
 	m_pCallSkillQuickSlotEx2Down = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotEx2Up(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotIdx))
+void CInputActionMap::LinkSkillQuickSlotEx2Up(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotIdx))
 {
 	NTL_PRE(m_pCallSkillQuickSlotEx2Up == 0);
 	m_pCallSkillQuickSlotEx2Up = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkSkillQuickSlotChange(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiQuickSlotChange))
+void CInputActionMap::LinkSkillQuickSlotChange(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiQuickSlotChange))
 {
 	NTL_PRE(m_pCallSkillQuickSlotChange == 0 );
 	m_pCallSkillQuickSlotChange = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass, callback);
@@ -423,7 +423,7 @@ void CInputActionMap::LinkLooting(Callbackclass *cbclass,int (Callbackclass::*ca
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkDialogHotKey(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiKey))
+void CInputActionMap::LinkDialogHotKey(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiKey))
 {
 	NTL_PRE( m_pCallDialogAction == 0 );
 	m_pCallDialogAction = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
@@ -458,7 +458,7 @@ void CInputActionMap::LinkAutoFollow(Callbackclass *cbclass,int (Callbackclass::
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkPartySelect(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx))
+void CInputActionMap::LinkPartySelect(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx))
 {
 	NTL_PRE( m_pCallPartySelect == 0 );
 	m_pCallPartySelect = NTL_NEW CNtlCallbackWidget1<Callbackclass>(cbclass,callback);
@@ -479,21 +479,21 @@ void CInputActionMap::LinkScouterUse(Callbackclass *cbclass, int (Callbackclass:
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkTargetMarking(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx))
+void CInputActionMap::LinkTargetMarking(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx))
 {
 	NTL_PRE( m_pCallTargetMarking == 0 );
 	m_pCallTargetMarking = NTL_NEW CNtlCallbackWidget1<Callbackclass>(cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkTargetSelecting(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiIdx))
+void CInputActionMap::LinkTargetSelecting(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiIdx))
 {
 	NTL_PRE( m_pCallTargetSelecting == 0 );
 	m_pCallTargetSelecting = NTL_NEW CNtlCallbackWidget1<Callbackclass>(cbclass,callback);
 }
 
 template <class Callbackclass>
-void CInputActionMap::LinkChatPageChange(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiOption))
+void CInputActionMap::LinkChatPageChange(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiOption))
 {
 	NTL_PRE( m_pCallChatPageChange == 0 );
 	m_pCallChatPageChange = NTL_NEW CNtlCallbackWidget1<Callbackclass>(cbclass,callback);

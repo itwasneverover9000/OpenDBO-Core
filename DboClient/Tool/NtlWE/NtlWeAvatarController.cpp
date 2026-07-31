@@ -192,7 +192,7 @@ void CNtlWeAvatarController::SetVisibleWeAvatar(bool bVisible)
 		GetNtlGameCameraManager()->SetActiveActor(NULL);
 }
 
-int CNtlWeAvatarController::ActionMapKeyboardMove(unsigned int uiMoveFlags)
+int CNtlWeAvatarController::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 {
 	if(m_bActive)
 	{
@@ -209,7 +209,7 @@ int CNtlWeAvatarController::ActionMapKeyboardMove(unsigned int uiMoveFlags)
 	return 1;
 }
 
-int CNtlWeAvatarController::ActionJump(unsigned int uiMoveFlags)
+int CNtlWeAvatarController::ActionJump(uintptr_t uiMoveFlags)
 {
 	if(m_bActive)
 		CNtlSLEventGenerator::ActionMapJump(uiMoveFlags);
@@ -260,7 +260,7 @@ int	CNtlWeAvatarController::MouseUpHandler(unsigned int uiMouseData)
 	{
 		MouseUpRBtnHandler(pData);
 	}
-	// camera auto rotate¸¦ ÆÇÁ¤ÇÑ´Ù.
+	// camera auto rotateë¥¼ íŒì •í•œë‹¤.
 	CalcCameraRotateToCharBack();
 	NTL_RETURN(1);
 }
@@ -323,20 +323,20 @@ void CNtlWeAvatarController::CalcCameraRotateToCharBack(void)
 			if(fCovAngleY >= 360.0f)
 				fCovAngleY -= 360.0f;
 
-			//  È¸ÀüÀº ½Ã°è ¹İ´ë ¹æÇâ È¸ÀüÀÌ´Ù.
-			//  Ä«¸Ş¶ó angle ¿¡¼­ character angle »«´Ù.
+			//  íšŒì „ì€ ì‹œê³„ ë°˜ëŒ€ ë°©í–¥ íšŒì „ì´ë‹¤.
+			//  ì¹´ë©”ë¼ angle ì—ì„œ character angle ëº€ë‹¤.
 			RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 			if(fSubAngleY > 0.0f)
-				if(fSubAngleY > 180.0f) // °¢µµ¸¦ Áõ°¡½ÃÅ²´Ù.
+				if(fSubAngleY > 180.0f) // ê°ë„ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 					m_sRotCharBack.fDelta = 360.0f - fSubAngleY;
-				else // °¢µµ¸¦ °¨¼Ò½ÃÅ²´Ù.
-					m_sRotCharBack.fDelta = -fSubAngleY; //(½Ã°è ¹İ´ë ¹æÇâÀÌ¹Ç·Î »©Áà¾ß ÇÑ´Ù.)
+				else // ê°ë„ë¥¼ ê°ì†Œì‹œí‚¨ë‹¤.
+					m_sRotCharBack.fDelta = -fSubAngleY; //(ì‹œê³„ ë°˜ëŒ€ ë°©í–¥ì´ë¯€ë¡œ ë¹¼ì¤˜ì•¼ í•œë‹¤.)
 			else
-				if(fSubAngleY > -180.0f) // °¢µµ¸¦ Áõ°¡½ÃÅ²´Ù.
+				if(fSubAngleY > -180.0f) // ê°ë„ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 					m_sRotCharBack.fDelta = fabs(fSubAngleY); 
-				else // °¢µµ¸¦ °¨¼Ò½ÃÅ²´Ù.
-					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // ½Ã°è ¹İ´ë ¹æÇâÀÌ¹Ç·Î »©Áà¾ß ÇÑ´Ù.
+				else // ê°ë„ë¥¼ ê°ì†Œì‹œí‚¨ë‹¤.
+					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // ì‹œê³„ ë°˜ëŒ€ ë°©í–¥ì´ë¯€ë¡œ ë¹¼ì¤˜ì•¼ í•œë‹¤.
 			
 			m_sRotCharBack.fCurr = 0.0f;
 			m_sRotCharBack.bActive = TRUE;

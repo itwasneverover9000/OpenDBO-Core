@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************
@@ -37,7 +37,7 @@ public:
 	~CNtlGameCamera(void);
 
 private:
-	RwReal	m_fDistance;		//CameraøÕ Target∞˙¿« ∞≈∏Æ
+	RwReal	m_fDistance;		//CameraÏôÄ TargetÍ≥ºÏùò Í±∞Î¶¨
 
 	RwReal	m_fMaxDistance;
 	RwReal	m_fMinDistance;
@@ -82,10 +82,10 @@ public:
 
 	void	Update(RwReal fElapsed);
 
-	int		MouseDownHandler(unsigned int uiMouseData);
-	int		MouseMoveHandler(unsigned int uiMouseData);
-	int		MouseWheelHandler(unsigned int uiMouseData);
-	int		KeyboardDownHandler(unsigned int uiKeyData);
+	int		MouseDownHandler(uintptr_t uiMouseData);
+	int		MouseMoveHandler(uintptr_t uiMouseData);
+	int		MouseWheelHandler(uintptr_t uiMouseData);
+	int		KeyboardDownHandler(uintptr_t uiKeyData);
 
 	void	HandleEvents(RWS::CMsg &pMsg);
 };

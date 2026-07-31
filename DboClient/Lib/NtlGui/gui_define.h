@@ -9,36 +9,36 @@
 #define USING_GUI	using namespace gui
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®ÀÇ À¯ÇüÀ» Á¤ÀÇÇÏ´Â ¿­°ÅÇü
+* \brief ì»´í¬ë„ŒíŠ¸ì˜ ìœ í˜•ì„ ì •ì˜í•˜ëŠ” ì—´ê±°í˜•
 */
 enum COMPONENT_STYLE
 {
-	COMP_HER_SCROLL				= 0x00000001,		///< ¼öÆò ½ºÅ©·Ñ ( Horizontal scroll )
-	COMP_VER_SCROLL				= 0x00000002,		///< ¼öÁ÷ ½ºÅ©·Ñ ( Vertical scroll )
-	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ¿ÞÂÊ Á¤·Ä
-	COMP_TEXT_CENTER			= 0x00000008,		///< Text : Áß¾Ó Á¤·Ä
-	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ¿À¸¥ÂÊ Á¤·Ä
-	COMP_TEXT_UP				= 0x00000020,		///< Text : »ó´Ü Á¤·Ä
-	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : Áß´Ü Á¤·Ä
-	COMP_TEXT_DOWN				= 0x00000080		///< Text : ÇÏ´Ü Á¤·Ä
+	COMP_HER_SCROLL				= 0x00000001,		///< ìˆ˜í‰ ìŠ¤í¬ë¡¤ ( Horizontal scroll )
+	COMP_VER_SCROLL				= 0x00000002,		///< ìˆ˜ì§ ìŠ¤í¬ë¡¤ ( Vertical scroll )
+	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ì™¼ìª½ ì •ë ¬
+	COMP_TEXT_CENTER			= 0x00000008,		///< Text : ì¤‘ì•™ ì •ë ¬
+	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ì˜¤ë¥¸ìª½ ì •ë ¬
+	COMP_TEXT_UP				= 0x00000020,		///< Text : ìƒë‹¨ ì •ë ¬
+	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : ì¤‘ë‹¨ ì •ë ¬
+	COMP_TEXT_DOWN				= 0x00000080		///< Text : í•˜ë‹¨ ì •ë ¬
 };
 
 /**
-* \brief TextÀÇ ¹è°æ Ã³¸®
+* \brief Textì˜ ë°°ê²½ ì²˜ë¦¬
 */
 enum TEXT_BK
 {
-	BK_TRANSPARENT,			///< Åõ¸í
-	BK_OPAQUE				///< ºÒÅõ¸í
+	BK_TRANSPARENT,			///< íˆ¬ëª…
+	BK_OPAQUE				///< ë¶ˆíˆ¬ëª…
 };
 
 /**
-* \brief TextÀÇ È¿°ú
+* \brief Textì˜ íš¨ê³¼
 */
 enum TEXT_EFFECT
 {
 	TE_NONE,
-	TE_SHADOW,				///< ±×¸²ÀÚ
+	TE_SHADOW,				///< ê·¸ë¦¼ìž
 	TE_OUTLINE				///< outline
 };
 
@@ -133,8 +133,8 @@ enum TEXT_EFFECT
 
 #define GUI_MOUSE_WHEEL_DELTA		120
 
-typedef unsigned int	COMPPAGE_HANDLE;
-typedef unsigned int	RESOURCE_HANDLE;
+typedef uintptr_t	COMPPAGE_HANDLE;
+	typedef uintptr_t	RESOURCE_HANDLE;
 
 #define UNISCRIBE_DLLNAME L"\\usp10.dll"
 
@@ -155,7 +155,7 @@ typedef unsigned int	RESOURCE_HANDLE;
 
 //////////////////////////////////////////////////////////////////////////////////////
 // staticbox symbol macro
-// desc : ¸¶Ä§Ç¥, ±ÛÁÙÀÓÇ¥ µî.
+// desc : ë§ˆì¹¨í‘œ, ê¸€ì¤„ìž„í‘œ ë“±.
 //////////////////////////////////////////////////////////////////////////////////////
 #define STATICBOX_SYMBOL_CHARACTER_PERIOD	L'.'
 #define STATICBOX_SYMBOL_STRING_ELLIPSIS	L"..."

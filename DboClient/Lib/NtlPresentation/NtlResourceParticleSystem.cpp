@@ -2,7 +2,7 @@
 //	File		:	NtlResourceParticleSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -348,7 +348,33 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 
 	CNtlResourceComponentSystem::Load(pFile, m_strTextureName);
 
-	fread(&m_EmitterStandard,				sizeof(RpPrtStdEmitterStandard),		1,			pFile);
+	// NOTE: RpPrtStdEmitterStandard has pointers (RwTexture*, RwMatrix*) which are
+	// 8 bytes on x64 vs 4 bytes on x86. Read each field individually to stay compatible
+	// with x86-saved .eff files.
+	{
+		RwInt32 __seed; fread(&__seed, sizeof(RwInt32), 1, pFile); m_EmitterStandard.seed = __seed;
+		RwInt32 __maxPrt; fread(&__maxPrt, sizeof(RwInt32), 1, pFile); m_EmitterStandard.maxPrt = __maxPrt;
+		fread(&m_EmitterStandard.currTime, sizeof(RwReal), 2, pFile); // currTime, prevTime
+		fread(&m_EmitterStandard.force, sizeof(RwV3d), 1, pFile);
+		fread(&m_EmitterStandard.emtPos, sizeof(RwV3d), 1, pFile);
+		fread(&m_EmitterStandard.emtSize, sizeof(RwV3d), 1, pFile);
+		fread(&m_EmitterStandard.emtEmitGap, sizeof(RwReal), 1, pFile);
+		fread(&m_EmitterStandard.emtEmitGapBias, sizeof(RwReal), 1, pFile);
+		fread(&m_EmitterStandard.emtPrevEmitTime, sizeof(RwReal), 1, pFile);
+		fread(&m_EmitterStandard.emtEmitTime, sizeof(RwReal), 1, pFile);
+		RwInt32 __emtPrtEmit; fread(&__emtPrtEmit, sizeof(RwInt32), 1, pFile); m_EmitterStandard.emtPrtEmit = __emtPrtEmit;
+		RwInt32 __emtPrtEmitBias; fread(&__emtPrtEmitBias, sizeof(RwInt32), 1, pFile); m_EmitterStandard.emtPrtEmitBias = __emtPrtEmitBias;
+		fread(&m_EmitterStandard.prtInitVel, sizeof(RwReal), 2, pFile); // prtInitVel, prtInitVelBias
+		fread(&m_EmitterStandard.prtLife, sizeof(RwReal), 2, pFile); // prtLife, prtLifeBias
+		fread(&m_EmitterStandard.prtInitDir, sizeof(RwV3d), 2, pFile); // prtInitDir, prtInitDirBias
+		fread(&m_EmitterStandard.prtSize, sizeof(RwV2d), 1, pFile);
+		fread(&m_EmitterStandard.prtColor, sizeof(RwRGBA), 1, pFile);
+		fread(&m_EmitterStandard.prtDelta2DRotate, sizeof(RwReal), 1, pFile);
+		fread(&m_EmitterStandard.prtUV, sizeof(RwTexCoords), 4, pFile);
+		// Skip the x86 pointer fields (2 * 4 bytes) that were saved in the file
+		RwUInt32 __dummy[2];
+		fread(__dummy, sizeof(RwUInt32), 2, pFile);
+	}
 
 	if (IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRTCOLOR))
 	{
@@ -446,7 +472,7 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 		break;
 	}
 
-    // Trail Action Ãß°¡ (¹öÁ¯ 6)
+    // Trail Action ì¶”ê°€ (ë²„ì ¼ 6)
     if(CNtlResourceEffect::m_nVersion >= 0x00000006 && IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGTRAIL))
     {
 		if (CNtlResourceEffect::m_nVersion >= 0x00000067)
@@ -482,9 +508,9 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 	return TRUE;
 }
 
-// ÆÄÆ¼Å¬ÀÌ »ı¼ºÀ§Ä¡¸¦ ³ªÅ¸´Ù´ÒÁö Flag¸¦ ¼³Á¤ÇÑ´Ù.
-// ÀÌ FlagÀÇ ¿µÇâÀº InstanceParticle Å¬·¡½º¾È¿¡¼­ ¼³Á¤µÈ´Ù(Update½Ã)
-// ÀÌ Flag´Â m_nPointEmitterDataFlag ÇÊµå¿¡ ¼³Á¤µÈ´Ù.
+// íŒŒí‹°í´ì´ ìƒì„±ìœ„ì¹˜ë¥¼ ë‚˜íƒ€ë‹¤ë‹ì§€ Flagë¥¼ ì„¤ì •í•œë‹¤.
+// ì´ Flagì˜ ì˜í–¥ì€ InstanceParticle í´ë˜ìŠ¤ì•ˆì—ì„œ ì„¤ì •ëœë‹¤(Updateì‹œ)
+// ì´ FlagëŠ” m_nPointEmitterDataFlag í•„ë“œì— ì„¤ì •ëœë‹¤.
 void CNtlResourceParticleSystem::SetFollowFlag(BOOL bFollow)
 {
     if(bFollow)

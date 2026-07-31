@@ -13,6 +13,10 @@
 #include "NtlPLGuiManager.h"
 #include "NtlPLSceneManager.h"
 
+#ifndef GCL_HCURSOR
+#define GCL_HCURSOR (-12)
+#endif
+
 // simulation
 #include "NtlWorldconcept.h"
 #include "NtlSobTriggerObject.h"
@@ -260,7 +264,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 				CNtlSobNpcAttr* pSobNPCAttr = reinterpret_cast<CNtlSobNpcAttr*>( pSobNPC->GetSobAttr() );
 				sNPC_TBLDAT* pNPC_TBLDAT = pSobNPCAttr->GetNpcTbl();
 
-				// æ∆πŸ≈∏∞° πˆΩ∫ ø‰±›¿ª ∞°¡ˆ∞Ì ¿÷∞Ì ≈ª ºˆ ¿÷¥¬ ∞≈∏Æ¿Œ¡ˆ ¡∂ªÁ
+				// ÏïÑÎ∞îÌÉÄÍ∞Ä Î≤ÑÏä§ ÏöîÍ∏àÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÍ≥† ÌÉà Ïàò ÏûàÎäî Í±∞Î¶¨Ïù∏ÏßÄ Ï°∞ÏÇ¨
 				if( Logic_GetZenny() >= pNPC_TBLDAT->amerchant_Tblidx[0] )
 				{
 					if( Logic_InFollowRange(reinterpret_cast<CNtlSobActor*>(pAvatar), pActor, (RwReal)NTL_MAX_BUS_DISTANCE) )
@@ -278,7 +282,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 			}
 			else
 			{
-				// æ∆πŸ≈∏∞° ≈∏∞Ì ¿÷¥¬ πˆΩ∫∞° æ∆¥— ¥Ÿ∏• πˆΩ∫ø° ∏∂øÏΩ∫ ƒøº≠∏¶ ø≈∞Â¥Ÿ
+				// ÏïÑÎ∞îÌÉÄÍ∞Ä Î≤ÑÏä§ ÏöîÍ∏àÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÍ≥† ÌÉà Ïàò ÏûàÎäî Í±∞Î¶¨Ïù∏ÏßÄ Ï°∞ÏÇ¨
 				SetMouseCursor( CS_DEAL_SHOP );	
 			}
 		}		
@@ -322,7 +326,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 VOID CCursorManager::InitLobbyCursor()
 {
 	SetMouseCursor(CS_LOBBY_CURSOR);
-	SetClassLong( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor] );
+	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 }
 
 VOID CCursorManager::InitGameCursor()
@@ -333,7 +337,7 @@ VOID CCursorManager::InitGameCursor()
 		SetCursor(m_hMouseCursor[m_eCurCursor]);
 	}
 
-	SetClassLong(CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor]);
+	SetClassLongPtr(CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor]);
 }
 
 VOID CCursorManager::ShowMouseCursor( RwBool bShow /* = TRUE  */)
@@ -365,14 +369,14 @@ VOID CCursorManager::SetMouseCursor( STATE eState )
 
 	m_eCurCursor = (RwUInt8)eState;
 
-	// πŸ∑Œ ƒøº≠∏¶ ∫Ø∞Ê«œ±‚ ¿ß«ÿ
+	// Î∞îÎ°ú Ïª§ÏÑúÎ•º Î≥ÄÍ≤ΩÌïòÍ∏∞ ÏúÑÌï¥
 	SetCursor(m_hMouseCursor[m_eCurCursor]);
 
-	// ƒøº≠ µÓ∑œ
-	SetClassLong( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor] );
+	// Ïª§ÏÑú Îì±Î°ù
+	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 
 	if( eState == CS_BATTLE_TARGET )
-	{	// ≈∏∞Ÿ º±≈√Ω√
+	{	// ÌÉÄÍ≤ü ÏÑ†ÌÉùÏãú
 		Logic_PlayGUISound( GSD_SYSTEM_ENEMY_FOUSE );
 	}
 }

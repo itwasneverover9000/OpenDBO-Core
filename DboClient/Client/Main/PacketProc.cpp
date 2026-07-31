@@ -9,7 +9,7 @@
 
 // simulation
 #include "NtlNetSender.h"
-
+#include "NtlSLApi.h"
 
 // dbo
 #include "DboGlobal.h"
@@ -153,7 +153,7 @@ void NetworkEventHander(HSERVER hServer, int nEvent)
                     GetDboGlobal()->GetGamePacketGenerator()->SendAuthKeyCommunityServerReq();	
                     pConnectData->sChatCon.byConnState = SConnectAtomic::SOCKET_STATE_CONNECT;
                     CNtlClientNet *pNet = GetDboGlobal()->GetNetwork(); 
-                    // chatting packet generator ÀÇ CNtlNetSender data setting.
+                    // chatting packet generator ì˜ CNtlNetSender data setting.
                     CChatPacketGenerator *pChatPacketGenerator = GetDboGlobal()->GetChatPacketGenerator();
                     CNtlNetSender *pChatNetSender = pChatPacketGenerator->GetNetSender();
                     pChatNetSender->SetData(pConnectData->sChatCon.hSocket, pNet); 
@@ -175,11 +175,11 @@ void NetworkEventHander(HSERVER hServer, int nEvent)
                                                  GetDisplayStringManager()->GetString("DST_CHAT_SERVER_DISCONNECT"), 
                                                  TRUE, 5.0f);
             }
-            //break;  // NOTE: break°¡ ¾øÀÌ ¾Æ·¡ ÀçÁ¢¼ÓÀ» ¿äÃ»ÇÑ´Ù. (by agebreak)
+            //break;  // NOTE: breakê°€ ì—†ì´ ì•„ë˜ ì¬ì ‘ì†ì„ ìš”ì²­í•œë‹¤. (by agebreak)
         case NETCLIENT_EVENT_CONNECT_FAIL:            
             if(pConnectData->sGameCon.hSocket != INVALID_HSERVER)
             {
-                // ÀçÁ¢¼Ó ¿äÃ» (ºñµ¿±â)
+                // ì¬ì ‘ì† ìš”ì²­ (ë¹„ë™ê¸°)
                 CNtlClientNet *pNet = GetDboGlobal()->GetNetwork();             
                 pNet->Connect((char*)pConnectData->sChatCon.chServerIP, pConnectData->sChatCon.wServerPort, &pConnectData->sChatCon.hSocket, true, NETCLIENT_ENCODE_NONE);
             }
@@ -201,8 +201,9 @@ CClientRecvPacketProc::CClientRecvPacketProc( const HSERVER hServer )
 
 bool CClientRecvPacketProc::RecvPacketProcess( void* const pData )
 {
-	GetDumpCmdManager()->RecvPacket(pData); 
+	GetDumpCmdManager()->RecvPacket(pData);
 	CNtlPacketHandler::DetectPacketHeader(pData);
+
 	return true;
 }
 
@@ -304,7 +305,7 @@ void CPacketProc::RecvVirualPackProc(void *pPacket)
 		return;
 	}
 
-	// ±âÁ¸¿¡ queue¿¡ ½×¿© ÀÖ´Â packetÀÌ ÀÖÀ¸¸é Ã³¸®ÇÑ´Ù.
+	// ê¸°ì¡´ì— queueì— ìŒ“ì—¬ ìˆëŠ” packetì´ ìˆìœ¼ë©´ ì²˜ë¦¬í•œë‹¤.
 	PopVirutalPacket();
 
 	CNtlPacketHandler::DetectPacketHeader(pVirtualPacket->chPacket);
@@ -316,7 +317,7 @@ void CPacketProc::ActivePop(RwBool bPop)
 
 	if(IsActivePop())
 	{
-		// ±âÁ¸¿¡ queue¿¡ ½×¿© ÀÖ´Â packetÀÌ ÀÖÀ¸¸é Ã³¸®ÇÑ´Ù.
+		// ê¸°ì¡´ì— queueì— ìŒ“ì—¬ ìˆëŠ” packetì´ ìˆìœ¼ë©´ ì²˜ë¦¬í•œë‹¤.
 		PopVirutalPacket();
 	}
 }

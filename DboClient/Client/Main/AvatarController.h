@@ -2,7 +2,7 @@
  *
  * File			: AvatarController.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 13	
  * Abstract		: NTl CAvatarController
  *****************************************************************************
@@ -36,9 +36,9 @@ enum ECameraRotateFlag
 
 /**
 * \ingroup Client
-* Keyboard ¹× MouseÀÇ ÀÔ·ÂÀ¸·Î Camera¸¦ °»½Å ÇÏ¸ç, CameraÀÇ ÀÌµ¿ ¹× È¸Àü¿¡
-* ¿¡ ´ëÇØ¼­ Avatar¿¡°Ô Event¸¦ º¸³»´Â ±â´ÉÀ» ÇÑ´Ù. ±×¸®°í Keyboard¿Í Mouse°¡
-* µ¿½Ã¿¡ ´­·ÈÀ» ¶§ÀÇ Ã³¸® ¶ÇÇÑ ÇÏ¸ç ActionMap¿¡ ´ëÇÑ Eventµµ ÀÌ°÷¿¡¼­ º¸³½´Ù
+* Keyboard ë° Mouseì˜ ì…ë ¥ìœ¼ë¡œ Cameraë¥¼ ê°±ì‹  í•˜ë©°, Cameraì˜ ì´ë™ ë° íšŒì „ì—
+* ì— ëŒ€í•´ì„œ Avatarì—ê²Œ Eventë¥¼ ë³´ë‚´ëŠ” ê¸°ëŠ¥ì„ í•œë‹¤. ê·¸ë¦¬ê³  Keyboardì™€ Mouseê°€
+* ë™ì‹œì— ëˆŒë ¸ì„ ë•Œì˜ ì²˜ë¦¬ ë˜í•œ í•˜ë©° ActionMapì— ëŒ€í•œ Eventë„ ì´ê³³ì—ì„œ ë³´ë‚¸ë‹¤
 * 
 */
 class CAvatarController : public RWS::CEventHandler
@@ -55,38 +55,38 @@ public:
 	void HandleEvents(RWS::CMsg &pMsg);
 	
 	/**
-	* mouse and keyboard hander ÇÔ¼ö.	
+	* mouse and keyboard hander í•¨ìˆ˜.	
 	*/
 
-	int	MouseWheelHandler(unsigned int uiMouseData);
+	int	MouseWheelHandler(uintptr_t uiMouseData);
 
-	int	MouseDownHandler(unsigned int uiMouseData);
-	int	MouseUpHandler(unsigned int uiMouseData);
+	int	MouseDownHandler(uintptr_t uiMouseData);
+	int	MouseUpHandler(uintptr_t uiMouseData);
 
-	int	KeyboardDownHandler(unsigned int uiKeyData);
-	int KeyboardUpHandler(unsigned int uiKeyData);
+	int	KeyboardDownHandler(uintptr_t uiKeyData);
+	int KeyboardUpHandler(uintptr_t uiKeyData);
 	
-	int RestoreHandler(void);		///< Device Restore Ã³¸® ÇÔ¼ö
+	int RestoreHandler(void);		///< Device Restore ì²˜ë¦¬ í•¨ìˆ˜
 		
 	/**
-	*	input action map Ã³¸® ÇÔ¼ö.
+	*	input action map ì²˜ë¦¬ í•¨ìˆ˜.
 	*/ 
-	int ActionMapKeyboardMove(unsigned int uiMoveFlags);
-	int ActionMapKeyboardDashMove(unsigned int uiMoveFlags);
+	int ActionMapKeyboardMove(uintptr_t uiMoveFlags);
+	int ActionMapKeyboardDashMove(uintptr_t uiMoveFlags);
 	int ActionAvatarSelect(void);
-	int ActionJump(unsigned int uiMoveFlags);
-	int ActionCharging(unsigned int uiCharging);
-	int	ActionBlocking(unsigned int uiBlocking);
-	int ActionSitAndStand(unsigned int bKeyDown);
+	int ActionJump(uintptr_t uiMoveFlags);
+	int ActionCharging(uintptr_t uiCharging);
+	int	ActionBlocking(uintptr_t uiBlocking);
+	int ActionSitAndStand(uintptr_t bKeyDown);
 	int ActionLooting(void);
 	int ActionAutoTarget(void);
 	int ActionAutoAttack(void);
 	int ActionAutoFollow(void);
-	int ActionPartySelect(unsigned int uiIdx);
+	int ActionPartySelect(uintptr_t uiIdx);
     int ActionAutoRun();
     int ActionScouterUse(void);
-    int ActionPartyShareTargetMarking(unsigned int uiSlot);
-    int ActionPartyShareTargetSelect(unsigned int uiSlot);
+    int ActionPartyShareTargetMarking(uintptr_t uiSlot);
+    int ActionPartyShareTargetSelect(uintptr_t uiSlot);
     int ActionPartyAutoSelect();
 
 private:
@@ -105,49 +105,49 @@ private:
 	void PickPLObject(SWorldPickInfo& sPickInfo);
 
 	/**
-	* avatar¸¦ Ä«¸Ş¶ó ¹æÇâÀ» ÂüÁ¶ÇÏ¿© ¹Ù·Î ¹æÇâÀ» ¹Ù²Ü ÇÊ¿ä°¡ ÀÖ´Âµ¥, ±âº» move flag¸¦ º¯ÇÑÇÑ´Ù.
+	* avatarë¥¼ ì¹´ë©”ë¼ ë°©í–¥ì„ ì°¸ì¡°í•˜ì—¬ ë°”ë¡œ ë°©í–¥ì„ ë°”ê¿€ í•„ìš”ê°€ ìˆëŠ”ë°, ê¸°ë³¸ move flagë¥¼ ë³€í•œí•œë‹¤.
 	*/
 	RwUInt8 ConvertStraightMoveFlags(RwUInt8 uiMoveFlags);
 
 	/**
-	* avatar¸¦ Ä«¸Ş¶ó ¹æÇâÀ» ÂüÁ¶ÇÏ¿©(ÇöÀç move flag¿Í Á¶ÇÕÇÏ¿©) ¹Ù·Î È¸ÀüÇÑ´Ù.
+	* avatarë¥¼ ì¹´ë©”ë¼ ë°©í–¥ì„ ì°¸ì¡°í•˜ì—¬(í˜„ì¬ move flagì™€ ì¡°í•©í•˜ì—¬) ë°”ë¡œ íšŒì „í•œë‹¤.
 	*/
 	RwReal CalcAvatarStraightRotate(RwUInt32 uiMoveFlags);
 
 	/**
-	* Ä«¸Ş¶ó È¸Àü °¨µµ¸¦ ±¸ÇÑ´Ù.
+	* ì¹´ë©”ë¼ íšŒì „ ê°ë„ë¥¼ êµ¬í•œë‹¤.
 	*/
 	void CalcCameraRotateSensitivity(int iPosX, int iPosY, int iMouseDeltaX, int iMouseDeltaY);
 
 	/**
-	* ¸¶¿ì½º ¹öÆ°ÀÌ ¾Æ¹«°Íµµ ´­¸®Áö ¾Ê°í,  keyboard·Î Ä³¸¯ÅÍ°¡ front and back À¸·Î ¿òÁ÷ÀÏ °æ¿ì
-	* Ä³¸¯ÅÍ µŞÆíÀ¸·Î Ä«¸Ş¶ó¸¦ È¸Àü½ÃÅ³ delta angleÀ» °è»êÇÑ´Ù.
+	* ë§ˆìš°ìŠ¤ ë²„íŠ¼ì´ ì•„ë¬´ê²ƒë„ ëˆŒë¦¬ì§€ ì•Šê³ ,  keyboardë¡œ ìºë¦­í„°ê°€ front and back ìœ¼ë¡œ ì›€ì§ì¼ ê²½ìš°
+	* ìºë¦­í„° ë’·í¸ìœ¼ë¡œ ì¹´ë©”ë¼ë¥¼ íšŒì „ì‹œí‚¬ delta angleì„ ê³„ì‚°í•œë‹¤.
 	*/
 	void CalcCameraRotateToCharBack(void);
 
 	/**
-	* ¸¶¿ì½º ¹öÆ°ÀÌ ¾Æ¹«°Íµµ ´­¸®Áö ¾Ê°í,  keyboard·Î Ä³¸¯ÅÍ°¡ front and back À¸·Î ¿òÁ÷ÀÏ °æ¿ì
-	* Ä³¸¯ÅÍ µŞÆíÀ¸·Î Ä«¸Ş¶ó¸¦ È¸Àü½ÃÄÑÁØ´Ù.
+	* ë§ˆìš°ìŠ¤ ë²„íŠ¼ì´ ì•„ë¬´ê²ƒë„ ëˆŒë¦¬ì§€ ì•Šê³ ,  keyboardë¡œ ìºë¦­í„°ê°€ front and back ìœ¼ë¡œ ì›€ì§ì¼ ê²½ìš°
+	* ìºë¦­í„° ë’·í¸ìœ¼ë¡œ ì¹´ë©”ë¼ë¥¼ íšŒì „ì‹œì¼œì¤€ë‹¤.
 	*/
 	void UpdateCameraRotateToCharBack(RwReal fElapsed);
 
 	/**
-	* auto runÀÏ °æ¿ì.
+	* auto runì¼ ê²½ìš°.
 	*/
 	void UpdateAutoRun(RwReal fElapsed);
 
 	/**
-	* move mark effect create ÇÔ¼ö.
+	* move mark effect create í•¨ìˆ˜.
 	*/
 	void CreateMoveMark(const RwV3d *pPos);
 
 	/**
-	* move mark effect delete ÇÔ¼ö.
+	* move mark effect delete í•¨ìˆ˜.
 	*/
 	void DeleteMoveMark(void);
 
 	/**
-	* move mark effect update ÇÔ¼ö.
+	* move mark effect update í•¨ìˆ˜.
 	*/
 	void UpdateMoveMark(RwReal fElapsed);
 
@@ -156,7 +156,7 @@ private:
 	void UpdateMouse(RwReal fElapsed);
 	
 	/**
-	* move mark effect update ÇÔ¼ö.
+	* move mark effect update í•¨ìˆ˜.
 	*/
 	void UpdateChangeHeading(RwReal fElapsed);
 
@@ -166,27 +166,27 @@ private:
 	void UpdateFlightAngle(float fElapsed);
 
 	/**
-	* picking focus update ÇÔ¼ö.
+	* picking focus update í•¨ìˆ˜.
 	*/
 	void UpdatePickFocus(RwReal fElapsed);
 
 	/**
-	* mouse left button up ÀÏ¶§ Ã³¸® ÇÔ¼ö.
+	* mouse left button up ì¼ë•Œ ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	void MouseUpLBtnHandler(const SMouseData *pData);
 
 	/**
-	* mouse right button up ÀÏ¶§ Ã³¸® ÇÔ¼ö.
+	* mouse right button up ì¼ë•Œ ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	void MouseUpRBtnHandler(const SMouseData *pData);
 
 	/**
-	* mouse move left button down ÀÏ¶§ Ã³¸® ÇÔ¼ö.
+	* mouse move left button down ì¼ë•Œ ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	void MouseMoveLBtnHandler(int iPosX, int iPosY);
 
 	/**
-	* mouse move right button down ÀÏ¶§ Ã³¸® ÇÔ¼ö.
+	* mouse move right button down ì¼ë•Œ ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	void MouseMoveRBtnHandler(int iPosX, int iPosY);
 
